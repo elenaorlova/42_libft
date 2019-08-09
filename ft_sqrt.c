@@ -10,12 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_sqrt(int n)
+int					ft_sqrt(int number)
 {
-	int i;
+	int				root;
 
-	i = 1;
-	while (i * i < n)
-		i++;
-	return (i);
+	root = 1;
+	while (root * root < n)
+		root++;
+	return (root);
 }

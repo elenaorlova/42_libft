@@ -12,61 +12,61 @@
 
 #include "libft.h"
 
-static int	c_l(char const *s, int i, char c)
+static int			count_letters(char const *s, int i, char c)
 {
-	int count;
+	int				result_value;
 
-	count = 0;
+	result_value = 0;
 	while (s[i + 1] != c && s[i] != '\0')
 	{
-		count++;
+		result_value++;
 		i++;
 	}
-	return (count + 1);
+	return (result_value + 1);
 }
 
-static int	c_w(char const *s, char c)
+static int			count_words(char const *s, char c)
 {
-	int count;
-	int i;
+	int				result_value;
+	int				index;
 
-	count = 0;
-	i = 0;
-	while (s[i])
+	result_value = 0;
+	index = 0;
+	while (s[index])
 	{
-		if (s[i] != c && (s[i + 1] == c || s[i + 1] == '\0'))
-			count++;
-		i++;
+		if (s[index] != c && (s[index + 1] == c || s[index + 1] == '\0'))
+			result_value++;
+		index++;
 	}
-	return (count + 1);
+	return (result_value + 1);
 }
 
-static int	skipp(int i, char const *s, char c)
+static int			skip_char(int i, char const *s, char c)
 {
 	while (s[i] == c)
 		i++;
 	return (i);
 }
 
-char		**ft_strsplit(char const *s, char c)
+char				**ft_strsplit(char const *s, char c)
 {
-	int		i1;
-	int		i;
-	int		j;
-	char	**new;
+	int				i1;
+	int				i;
+	int				j;
+	char 			**new;
 
 	i1 = -1;
 	i = 0;
-	if (s == NULL || !(new = (char **)malloc
-(sizeof(char *) * (c_w(s, c) + 1))))
+	if (s == NULL ||
+		!(new = (char **)malloc(sizeof(char *) * (count_words(s, c) + 1))))
 		return (NULL);
-	while (++i1 < (c_w(s, c) - 1))
+	while (++i1 < (count_words(s, c) - 1))
 	{
-		i = skipp(i, s, c);
+		i = skip_char(i, s, c);
 		while (s[i] != c && s[i] != '\0')
 		{
 			j = -1;
-			if (!(new[i1] = (char *)malloc(sizeof(char) * c_l(s, i, c))))
+			if (!(new[i1] = (char *)malloc(sizeof(char) * count_letters(s, i, c))))
 				return (NULL);
 			while (s[i] != c && s[i])
 				new[i1][++j] = s[i++];

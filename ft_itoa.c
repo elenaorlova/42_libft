@@ -12,31 +12,31 @@
 
 #include "libft.h"
 
-char		*ft_itoa(int n)
+char				*ft_itoa(int source_number)
 {
-	char	*numb1;
-	char	numb[11];
-	int		znak;
-	int		i;
-	int		j;
+	char			*result_number;
+	char			inverse_number[11];
+	int				sign;
+	int				i;
+	int				j;
 
-	if (n == -2147483648)
+	if (source_number == MIN_INTEGER)
 		return (ft_strdup("-2147483648"));
-	znak = n < 0 ? -1 : 1;
+	sign = source_number < 0 ? -1 : 1;
 	i = 0;
 	j = 0;
-	while (znak * n > 9)
+	while (sign * source_number > 9)
 	{
-		numb[i++] = '0' + znak * (n % 10);
-		n /= 10;
+		inverse_number[i++] = '0' + sign * (source_number % 10);
+		source_number /= 10;
 	}
-	numb[i++] = '0' + znak * n;
-	if (znak == -1)
-		numb[i++] = '-';
-	if (!(numb1 = (char *)malloc(sizeof(char) * (i + 1))))
+	inverse_number[i++] = '0' + sign * source_number;
+	if (sign == -1)
+		inverse_number[i++] = '-';
+	if (!(result_number = (char *)malloc(sizeof(char) * (i + 1))))
 		return (NULL);
-	numb1[i] = '\0';
+	result_number[i] = '\0';
 	while (i--)
-		numb1[i] = numb[j++];
-	return (numb1);
+		result_number[i] = inverse_number[j++];
+	return (result_number);
 }

@@ -10,31 +10,33 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int							ft_atoi(const char *str)
+#include "libft.h"
+
+int					ft_atoi(const char *str)
 {
-	int						i;
-	int						znak;
-	unsigned long long int	result;
+	int				i;
+	int				sign;
+	long long		result;
 
 	i = 0;
 	result = 0;
-	znak = 1;
+	sign = POSITIVE_VALUE;
 	while (str[i] == '\t' || str[i] == '\n' || str[i] == '\v' || str[i] == '\r'
 			|| str[i] == '\f' || str[i] == ' ')
 		i++;
 	if (str[i] == '-' || str[i] == '+')
 	{
 		if (str[i++] == '-')
-			znak *= -1;
+			sign = NEGATIVE_VALUE;
 	}
 	while (str[i] >= 48 && str[i] <= 57)
 	{
 		result = result * 10 + (str[i] - '0');
-		if (result >= 9223372036854775807 && znak == 1)
+		if (result >= BOUNDARY_VALUE && sign == POSITIVE_VALUE)
 			return (-1);
-		else if (result > 9223372036854775807 && znak == -1)
+		else if (result > BOUNDARY_VALUE && sign == NEGATIVE_VALUE)
 			return (0);
 		i++;
 	}
-	return (result * znak);
+	return (result * sign);
 }

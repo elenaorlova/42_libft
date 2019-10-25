@@ -1,6 +1,6 @@
-# 21_libft
+# 42_libft
 
-## MEMORY FUNCTIONS:
+## Memory Functions:
 
 * ft_bzero()
 * ft_memalloc()
@@ -12,7 +12,7 @@
 * ft_memmove()
 * ft_memset()
 
-## STRING FUNCTIONS:
+## String Functions:
 
 * ft_atoi()
 * ft_getnbr()
@@ -51,3 +51,7 @@
 * ft_strup()
 * ft_tolower()
 * ft_toupper()
+
+## Sources:
+
+* https://ru.wikipedia.org/wiki/Stdlib.h
